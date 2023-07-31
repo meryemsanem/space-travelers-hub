@@ -33,6 +33,7 @@ nav {
   border-right: 1px solid black;
   padding-right: 25px;
 }
+
 .active {
   text-decoration: underline;
   text-decoration-color: blue;
