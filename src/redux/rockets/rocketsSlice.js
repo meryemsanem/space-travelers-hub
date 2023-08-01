@@ -30,10 +30,11 @@ const rocketsSlice = createSlice({
     builder.addCase(fetchRocketsData.fulfilled, (state, action) => {
       state.isLoading = false;
       const fetchRockets = action.payload.map((rockets) => {
-        id = rockets.id;
-        name = rockets.rocket_name;
-        type = rockets.rocket_type;
-        image = rockets.flickr_images;
+        const rocket = {};
+        rocket.id = rockets.id;
+        rocket.name = rockets.rocket_name;
+        rocket.type = rockets.rocket_type;
+        rocket.image = rockets.flickr_images;
         return rocket;
       });
       state.data = fetchRockets;
