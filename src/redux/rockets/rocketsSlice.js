@@ -2,49 +2,49 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const url = 'https://api.spacexdata.com/v3/rockets';
+const initialState = {
+  isLoading: false,
+  data: [],
+  error: '',
+};
+const getData = (data) => data.map((rockets) => ({
+  id: rockets.id,
+  name: rockets.rocket_name,
+  description: rockets.description,
+  image: rockets.flickr_images,
+}));
 
-const fetchRocketsData = createAsyncThunk(
+export const fetchRocketsData = createAsyncThunk(
   'rockets/fetchRocketsData',
-  async (thunkAPI) => {
+  async () => {
     try {
       const response = await axios.get(url);
-      return response.data;
+      const { data } = response;
+      return getData(data);
     } catch (error) {
-      return thunkAPI.rejectWithValue('error');
+      throw new Error(error);
     }
   },
 );
-const initialState = {
-  data: [],
-  error: null,
-  isLoading: false,
-};
-
 const rocketsSlice = createSlice({
   name: 'rockets',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(fetchRocketsData.pending, (state) => {
-      state.isLoading = true;
-    });
-    builder.addCase(fetchRocketsData.fulfilled, (state, action) => {
-      state.isLoading = false;
-      const fetchRockets = action.payload.map((rockets) => {
-        const rocket = {};
-        rocket.id = rockets.id;
-        rocket.name = rockets.rocket_name;
-        rocket.type = rockets.rocket_type;
-        rocket.image = rockets.flickr_images;
-        return rocket;
-      });
-      state.data = fetchRockets;
-    });
-    builder.addCase(fetchRocketsData.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    });
+    builder
+      .addCase(fetchRocketsData.pending, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(fetchRocketsData.fulfilled, (state, action) => ({
+        ...state,
+        isLoading: false,
+        data: action.payload,
+      }))
+      .addCase(fetchRocketsData.rejected, (state, action) => ({
+        ...state,
+        isLoading: false,
+        error: action.error.message,
+      }));
   },
 });
-
 export default rocketsSlice.reducer;
-export { fetchRocketsData };
