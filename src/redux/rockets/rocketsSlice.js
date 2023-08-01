@@ -12,12 +12,12 @@ const fetchRocketsData = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue('error');
     }
-  }
+  },
 );
 const initialState = {
   data: [],
   error: null,
-  isLoading: false, 
+  isLoading: false,
 };
 
 const rocketsSlice = createSlice({
