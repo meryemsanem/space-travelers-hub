@@ -17,7 +17,7 @@ const fetchRocketsData = createAsyncThunk(
 const initialState = {
   data: [],
   error: null,
-  isLoading: false,
+  isLoading: false, 
 };
 
 const rocketsSlice = createSlice({
