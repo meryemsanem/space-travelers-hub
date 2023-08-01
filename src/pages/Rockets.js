@@ -1,29 +1,35 @@
-// import React from 'react';
-// import { Button } from 'react-bootstrap';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRocketsData } from '../redux/rockets/rocketsSlice';
+import './Rockets.css';
 
-function Rocket() {
-  const rocket = useSelector((store) => store.rockets);
-  console.log(rocket);
-  // return (
-  //   <div className="single-rocket">
-  //     <img src={rocket.image} alt="rocket" />
-  //     <div className="rocket-info">
-  //       <h1>{rocket.name}</h1>
-  //       <p>{rocket.description}</p>
-  //       <Button type="submit">Reserve Rocket</Button>
-  //     </div>
-  //   </div>
-  // );
-}
-
-export default Rocket;
-
-Rocket.propTypes = {
-  rocket: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-  }).isRequired,
+const Rockets = () => {
+  const dispatch = useDispatch();
+  const { isLoading, data, error } = useSelector((state) => state.rockets);
+  useEffect(() => {
+    dispatch(fetchRocketsData());
+  }, [dispatch]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>{error}</div>;
+  }
+  return (
+    <div className="rockets-container">
+      {data.map((rocket) => (
+        <div className="rocket-left" key={rocket.id}>
+          <img src={rocket.image} alt={rocket.name} className="rocket-image" />
+          <div className="rocket-details">
+            <h2 className="rocket-name">{rocket.name}</h2>
+            <p className="rocket-desc">{rocket.description}</p>
+            <button type="submit" className="rocket-btn">
+              Reserve Rocket
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 };
+export default Rockets;
