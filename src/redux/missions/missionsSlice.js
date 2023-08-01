@@ -9,12 +9,16 @@ const initialState = {
   error: '',
 };
 
+const getData = (data) => data.map((mission) => ({
+  id: mission.mission_id,
+  name: mission.mission_name,
+  description: mission.description,
+}));
 export const fetchMissions = createAsyncThunk('missions/fetchMissions', async () => {
   try {
     const response = await axios.get(apiUrl);
     const { data } = response;
-    console.log(data);
-    return data;
+    return getData(data);
   } catch (error) {
     throw Error(error);
   }
@@ -23,8 +27,8 @@ export const fetchMissions = createAsyncThunk('missions/fetchMissions', async ()
 const missionsSlice = createSlice({
   name: 'missions',
   initialState,
-  extraReducers: (bulider) => {
-    bulider.addCase(fetchMissions.pending, (state) => ({
+  extraReducers: (builder) => {
+    builder.addCase(fetchMissions.pending, (state) => ({
       ...state,
       loading: true,
     }))
