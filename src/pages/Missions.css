@@ -31,7 +31,7 @@
   width: 10%;
 }
 
-.mission-status {
+.mission-status-join {
   font-size: 14px;
   background-color: #777;
   color: #fff;
@@ -55,4 +55,28 @@
 .td-description {
   font-size: 14px !important;
   width: 55%;
+}
+ /* JOIN STATE  */
+ .join-rows {
+  background-color: #dee2e6;
+ }
+ .td-leave-mission {
+  font-size: 14px;
+  background: none;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  padding: 7px 10px;
+  border-radius: 3px;
+ }
+ .td-leave-mission:hover {
+  cursor: pointer;
+ }
+.mission-status-leave {
+  background-color: #22b8cf;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 3px;
+  padding: 2px 5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
