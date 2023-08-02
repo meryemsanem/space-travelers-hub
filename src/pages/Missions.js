@@ -13,6 +13,7 @@ function Missions() {
   function hundleLeaveMission(id) {
     dispatch(leaveMission(id));
   }
+  console.log(missions);
   useEffect(() => {
     dispatch(fetchMissions());
   }, [dispatch]);
@@ -38,15 +39,25 @@ function Missions() {
           <th className="button">&nbsp;</th>
         </tr>
         {missions.map((mission) => (
-          <tr key={mission.id} className="rows">
-            <td className="td-mission">{mission.name}</td>
-            <td className="description td-description">{mission.description}</td>
-            <td className="status"><span className="mission-status">NOT A MEMBER</span></td>
-            <td className="button">
-              <button type="button" className="td-join-mission" onClick={() => hundleJoinMission(mission.id)}>Join Mission</button>
-              <button type="button" className="td-join-mission" onClick={() => hundleLeaveMission(mission.id)}>Join Mission</button>
-            </td>
-          </tr>
+          mission.reserved ? (
+            <tr key={mission.id} className="rows">
+              <td className="td-mission">{mission.name}</td>
+              <td className="description td-description">{mission.description}</td>
+              <td className="status"><span className="mission-status">Active Member</span></td>
+              <td className="button">
+                <button type="button" className="td-leave-mission" onClick={() => hundleLeaveMission(mission.id)}>Leave Mission</button>
+              </td>
+            </tr>
+          ) : (
+            <tr key={mission.id} className="rows">
+              <td className="td-mission">{mission.name}</td>
+              <td className="description td-description">{mission.description}</td>
+              <td className="status"><span className="mission-status">NOT A MEMBER</span></td>
+              <td className="button">
+                <button type="button" className="td-join-mission" onClick={() => hundleJoinMission(mission.id)}>Join Mission</button>
+              </td>
+            </tr>
+          )
         ))}
       </table>
     </>
