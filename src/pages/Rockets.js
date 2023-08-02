@@ -13,7 +13,6 @@ const Rockets = () => {
 
   const handleReserveButtonClick = (rocketId) => {
     dispatch(reserveRocket(rocketId));
-    console.log(rocketId);
   };
 
   if (isLoading) {
