@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMissions } from '../redux/missions/missionsSlice';
+import { fetchMissions, joinMission } from '../redux/missions/missionsSlice';
 import './Missions.css';
 
 function Missions() {
-  const { missions } = useSelector((store) => store.missions);
+  const missionData = useSelector((store) => store.missions);
+  const { isLoading, missions, error } = missionData;
   const dispatch = useDispatch();
-
+  function hundleJoinMission(id) {
+    dispatch(joinMission(id));
+  }
   useEffect(() => {
     dispatch(fetchMissions());
   }, [dispatch]);
-
   return (
     <>
       <table className="missions">
@@ -25,7 +27,7 @@ function Missions() {
             <td className="td-mission">{mission.name}</td>
             <td className="description td-description">{mission.description}</td>
             <td className="status"><span className="mission-status">NOT A MEMBER</span></td>
-            <td className="button"><button type="button" className="td-join-mission">Join Mission</button></td>
+            <td className="button"><button type="button" className="td-join-mission" onClick={() => hundleJoinMission(mission.id)}>Join Mission</button></td>
           </tr>
         ))}
       </table>
