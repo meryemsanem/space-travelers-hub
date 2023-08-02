@@ -13,6 +13,18 @@ function Missions() {
   useEffect(() => {
     dispatch(fetchMissions());
   }, [dispatch]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return (
+      <div>
+        Error:
+        {' '}
+        {error}
+      </div>
+    );
+  }
   return (
     <>
       <table className="missions">
