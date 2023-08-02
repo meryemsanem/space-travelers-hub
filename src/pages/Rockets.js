@@ -33,19 +33,20 @@ const Rockets = () => {
 
   return (
     <div className="rockets-container">
-      {data.map((rocket) => (
+      {data.map((rocket) => (rocket.reserved ? (
         <div className="rocket-left" key={rocket.id}>
-          <img src={rocket.image} alt={rocket.name} className="rocket-image" />
+          <img
+            src={rocket.image}
+            alt={rocket.name}
+            className="rocket-image"
+          />
           <div className="rocket-details">
             <h2 className="rocket-name">{rocket.name}</h2>
-            <p className="rocket-desc">{rocket.description}</p>
-            <button
-              type="submit"
-              className="rocket-btn"
-              onClick={() => handleReserveButtonClick(rocket.id)}
-            >
-              Reserve Rocket
-            </button>
+            <p className="rocket-desc">
+              {' '}
+              <span className="reserved-badge">Reserved</span>
+              {rocket.description}
+            </p>
             <button
               type="button"
               className="rocket-btn"
@@ -55,7 +56,27 @@ const Rockets = () => {
             </button>
           </div>
         </div>
-      ))}
+      ) : (
+        <div className="rocket-left" key={rocket.id}>
+          <img
+            src={rocket.image}
+            alt={rocket.name}
+            className="rocket-image"
+          />
+          <div className="rocket-details">
+            <h2 className="rocket-name">{rocket.name}</h2>
+            <p className="rocket-desc">{rocket.description}</p>
+            <button
+              type="button"
+              className="rocket-btn"
+              key={rocket.id}
+              onClick={() => handleReserveButtonClick(rocket.id)}
+            >
+              Reserve Rocket
+            </button>
+          </div>
+        </div>
+      )))}
     </div>
   );
 };

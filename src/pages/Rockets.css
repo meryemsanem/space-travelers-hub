@@ -26,3 +26,13 @@
 .rocket-desc {
   color: #333;
 }
+
+.reserved-badge {
+  padding: 1px 4px;
+  border: 1px solid #22b8cf;
+  background-color: #22b8cf;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-right: 10px;
+  color: white;
+}
