@@ -6,6 +6,7 @@ const initialState = {
   isLoading: false,
   data: [],
   error: '',
+  joinedRockets: [],
 };
 const getData = (data) => data.map((rockets) => ({
   id: rockets.id,
@@ -14,7 +15,6 @@ const getData = (data) => data.map((rockets) => ({
   image: rockets.flickr_images,
   reserved: false,
 }));
-
 export const fetchRocketsData = createAsyncThunk(
   'rockets/fetchRocketsData',
   async () => {
@@ -38,7 +38,11 @@ const rocketsSlice = createSlice({
         }
         return rocket;
       });
-      return { ...state, data: newState };
+      return {
+        ...state,
+        data: newState,
+        joinedRockets: [...state.joinedRockets, action.payload],
+      };
     },
     cancelReserveRocket: (state, action) => {
       const newState = state.data.map((rocket) => {
@@ -47,7 +51,13 @@ const rocketsSlice = createSlice({
         }
         return rocket;
       });
-      return { ...state, data: newState };
+      return {
+        ...state,
+        data: newState,
+        joinedRockets: state.joinedRockets.filter(
+          (rocketId) => rocketId !== action.payload,
+        ),
+      };
     },
   },
   extraReducers: (builder) => {
@@ -68,6 +78,5 @@ const rocketsSlice = createSlice({
       }));
   },
 });
-
 export const { reserveRocket, cancelReserveRocket } = rocketsSlice.actions;
 export default rocketsSlice.reducer;
