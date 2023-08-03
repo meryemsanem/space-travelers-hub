@@ -1,7 +1,6 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <br/>
   <h1><b>Space Travelers' Hub🚀</b></h1>
 
 </div>
@@ -84,7 +83,7 @@ In order to run this project you need:
 Clone this repository to your desired folder:
 
 ```sh
-- git clone git@github.com:meryemsanem/react-capstone.git
+ git clone git@github.com:meryemsanem/react-capstone.git
 ```
 
 ### Install
