@@ -35,7 +35,7 @@ nav {
   padding-right: 25px;
 }
 
-.active {
+.nav-link.active{
   text-decoration: underline;
   text-decoration-color: blue;
 }
