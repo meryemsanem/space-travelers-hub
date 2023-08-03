@@ -5,21 +5,27 @@ import './Missions.css';
 
 function Missions() {
   const missionData = useSelector((store) => store.missions);
-  const { isLoading, missions, error } = missionData;
+  const {
+    isLoading, missions, error, joinedMissions,
+  } = missionData;
   const dispatch = useDispatch();
-  function hundleJoinMission(id) {
+
+  function handleJoinMission(id) {
     dispatch(joinMission(id));
   }
-  function hundleLeaveMission(id) {
+
+  function handleLeaveMission(id) {
     dispatch(leaveMission(id));
   }
-  console.log(missions);
+
   useEffect(() => {
     dispatch(fetchMissions());
   }, [dispatch]);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
+
   if (error) {
     return (
       <div>
@@ -29,6 +35,7 @@ function Missions() {
       </div>
     );
   }
+
   return (
     <>
       <table className="missions">
@@ -39,28 +46,32 @@ function Missions() {
           <th className="button">&nbsp;</th>
         </tr>
         {missions.map((mission) => (
-          mission.reserved ? (
-            <tr key={mission.id} className="rows">
-              <td className="td-mission">{mission.name}</td>
-              <td className="description td-description">{mission.description}</td>
-              <td className="status"><span className="mission-status-leave">Active Member</span></td>
-              <td className="button">
-                <button type="button" className="td-leave-mission" onClick={() => hundleLeaveMission(mission.id)}>Leave Mission</button>
-              </td>
-            </tr>
-          ) : (
-            <tr key={mission.id} className="join-rows">
-              <td className="td-mission">{mission.name}</td>
-              <td className="description td-description">{mission.description}</td>
-              <td className="status"><span className="mission-status-join">NOT A MEMBER</span></td>
-              <td className="button">
-                <button type="button" className="td-join-mission" onClick={() => hundleJoinMission(mission.id)}>Join Mission</button>
-              </td>
-            </tr>
-          )
+          <tr key={mission.id} className={joinedMissions.includes(mission.id) ? ('rows') : ('join-rows')}>
+            <td className="td-mission">{mission.name}</td>
+            <td className="description td-description">{mission.description}</td>
+            <td className="status">
+              {joinedMissions.includes(mission.id) ? (
+                <span className="mission-status-leave">Active Member</span>
+              ) : (
+                <span className="mission-status-join">NOT A MEMBER</span>
+              )}
+            </td>
+            <td className="button">
+              {joinedMissions.includes(mission.id) ? (
+                <button type="button" className="td-leave-mission" onClick={() => handleLeaveMission(mission.id)}>
+                  Leave Mission
+                </button>
+              ) : (
+                <button type="button" className="td-join-mission" onClick={() => handleJoinMission(mission.id)}>
+                  Join Mission
+                </button>
+              )}
+            </td>
+          </tr>
         ))}
       </table>
     </>
   );
 }
+
 export default Missions;
