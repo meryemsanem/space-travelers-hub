@@ -9,31 +9,29 @@ import './Rockets.css';
 
 const Rockets = () => {
   const dispatch = useDispatch();
-  const { isLoading, data, error } = useSelector((state) => state.rockets);
-
+  const {
+    isLoading, data, error, joinedRockets,
+  } = useSelector(
+    (state) => state.rockets,
+  );
   useEffect(() => {
     dispatch(fetchRocketsData());
   }, [dispatch]);
-
   const handleReserveButtonClick = (rocketId) => {
     dispatch(reserveRocket(rocketId));
   };
-
   const handleCancelReservationButtonClick = (rocketId) => {
     dispatch(cancelReserveRocket(rocketId));
   };
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     return <div>{error}</div>;
   }
-
   return (
     <div className="rockets-container">
-      {data.map((rocket) => (rocket.reserved ? (
+      {data.map((rocket) => (joinedRockets.includes(rocket.id) ? (
         <div className="rocket-left" key={rocket.id}>
           <img
             src={rocket.image}
@@ -80,5 +78,4 @@ const Rockets = () => {
     </div>
   );
 };
-
 export default Rockets;
