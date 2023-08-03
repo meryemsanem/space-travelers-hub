@@ -13,7 +13,6 @@ function Missions() {
   function hundleLeaveMission(id) {
     dispatch(leaveMission(id));
   }
-  console.log(missions);
   useEffect(() => {
     dispatch(fetchMissions());
   }, [dispatch]);
