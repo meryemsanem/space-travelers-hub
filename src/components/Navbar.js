@@ -1,12 +1,9 @@
 import React from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from '../assets/planet.png';
 import './styles/Navbar.css';
 
 function Navbar() {
-  const location = useLocation();
-  const { pathname } = location;
-  const splitLocation = pathname.split('/');
   return (
     <nav>
       <div className="logo-container">
@@ -14,14 +11,14 @@ function Navbar() {
         <h1>Space Travelers&apos; Hub</h1>
       </div>
       <ul className="navItems">
-        <li className={splitLocation[1] === '' ? 'active' : ''}>
-          <NavLink to="/">Rockets</NavLink>
+        <li>
+          <NavLink to="/" className="nav-link">Rockets</NavLink>
         </li>
-        <li className={splitLocation[1] === 'missions' ? 'active' : ''}>
-          <NavLink to="/missions" className="icon">Missions</NavLink>
+        <li>
+          <NavLink to="/missions" className="icon nav-link">Missions</NavLink>
         </li>
-        <li className={splitLocation[1] === 'profile' ? 'active' : ''}>
-          <NavLink to="/profile">My Profile</NavLink>
+        <li>
+          <NavLink to="/profile" className="nav-link">My Profile</NavLink>
         </li>
       </ul>
     </nav>

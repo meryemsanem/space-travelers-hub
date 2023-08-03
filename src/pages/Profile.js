@@ -18,9 +18,7 @@ function Profile() {
         <tbody>
           {reservedMissions.map((mission) => (
             <tr key={mission.id}>
-              <td>
-                {mission.name}
-              </td>
+              <td>{mission.name}</td>
             </tr>
           ))}
         </tbody>

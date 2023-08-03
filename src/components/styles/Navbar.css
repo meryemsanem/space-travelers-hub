@@ -12,7 +12,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  border-bottom: 2px solid #ddd;
+  margin-inline: 4%;
 }
 
 .logo-container {
@@ -34,7 +35,7 @@ nav {
   padding-right: 25px;
 }
 
-.active {
+.nav-link.active {
   text-decoration: underline;
   text-decoration-color: blue;
 }
