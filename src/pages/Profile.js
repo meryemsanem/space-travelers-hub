@@ -12,7 +12,7 @@ function Profile() {
       <table className="profile-missions">
         <thead>
           <tr>
-            <th>Missions Joined</th>
+            <th>My Missions</th>
           </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@ function Profile() {
       <table className="profile-rockets">
         <thead>
           <tr>
-            <th>Rockets Reserved</th>
+            <th>My Rockets</th>
           </tr>
         </thead>
         <tbody>
