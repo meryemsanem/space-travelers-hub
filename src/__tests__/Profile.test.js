@@ -30,7 +30,7 @@ test('renders Profile correctly', () => {
       <MemoryRouter>
         <Profile />
       </MemoryRouter>
-    </Provider>
+    </Provider>,
   );
 
   expect(asFragment()).toMatchSnapshot();

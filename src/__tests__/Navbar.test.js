@@ -7,7 +7,7 @@ test('renders Navbar correctly', () => {
   const { asFragment } = render(
     <MemoryRouter>
       <Navbar />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   expect(asFragment()).toMatchSnapshot();
