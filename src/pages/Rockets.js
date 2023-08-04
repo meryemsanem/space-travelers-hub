@@ -47,7 +47,7 @@ const Rockets = () => {
             </p>
             <button
               type="button"
-              className="rocket-btn"
+              className="rocket-btn cancel"
               data-testid={`cancel-reservation-button-${rocket.id}`}
               onClick={() => handleCancelReservationButtonClick(rocket.id)}
             >

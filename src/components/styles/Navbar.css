@@ -27,7 +27,7 @@ nav {
 
 .navItems li a {
   text-decoration: none;
-  color: blue;
+  color: #03a9f4;
 }
 
 .icon {
@@ -37,5 +37,5 @@ nav {
 
 .nav-link.active {
   text-decoration: underline;
-  text-decoration-color: blue;
+  text-decoration-color: #03a9f4;
 }
