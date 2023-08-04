@@ -5,7 +5,7 @@ import {
   reserveRocket,
   cancelReserveRocket,
 } from '../redux/rockets/rocketsSlice';
-import './Rockets.css';
+import './styles/Rockets.css';
 
 const Rockets = () => {
   const dispatch = useDispatch();
@@ -48,6 +48,7 @@ const Rockets = () => {
             <button
               type="button"
               className="rocket-btn"
+              data-testid={`cancel-reservation-button-${rocket.id}`}
               onClick={() => handleCancelReservationButtonClick(rocket.id)}
             >
               Cancel Reservation
@@ -68,6 +69,7 @@ const Rockets = () => {
               type="button"
               className="rocket-btn"
               key={rocket.id}
+              data-testid={`reserve-button-${rocket.id}`}
               onClick={() => handleReserveButtonClick(rocket.id)}
             >
               Reserve Rocket
