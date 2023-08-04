@@ -4,6 +4,7 @@ import missionsReducer, {
   joinMission,
   leaveMission,
 } from '../redux/missions/missionsSlice';
+
 describe('missionsSlice', () => {
   let store;
   beforeEach(async () => {
@@ -40,7 +41,7 @@ describe('missionsSlice', () => {
     store.dispatch(joinMission(missionIdToJoin));
     const stateAfter = store.getState().missions;
     const joinedMission = stateAfter.missions.find(
-      (mission) => mission.id === missionIdToJoin
+      (mission) => mission.id === missionIdToJoin,
     );
     expect(joinedMission.reserved).toBe(true);
     expect(stateAfter.joinedMissions).toContain(missionIdToJoin);
@@ -55,7 +56,7 @@ describe('missionsSlice', () => {
     store.dispatch(leaveMission(missionIdToLeave));
     const stateAfter = store.getState().missions;
     const leftMission = stateAfter.missions.find(
-      (mission) => mission.id === missionIdToLeave
+      (mission) => mission.id === missionIdToLeave,
     );
     expect(leftMission.reserved).toBe(false);
     expect(stateAfter.joinedMissions).not.toContain(missionIdToLeave);

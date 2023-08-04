@@ -44,7 +44,7 @@ describe('rocketsSlice', () => {
     const stateAfter = store.getState().rockets;
 
     const reservedRocket = stateAfter.data.find(
-      (rocket) => rocket.id === rocketIdToReserve
+      (rocket) => rocket.id === rocketIdToReserve,
     );
 
     expect(reservedRocket.reserved).toBe(true);
@@ -59,7 +59,7 @@ describe('rocketsSlice', () => {
 
     const stateAfter = store.getState().rockets;
     const canceledRocket = stateAfter.data.find(
-      (rocket) => rocket.id === rocketIdToCancel
+      (rocket) => rocket.id === rocketIdToCancel,
     );
     expect(canceledRocket.reserved).toBe(false);
     expect(stateAfter.joinedRockets).not.toContain(rocketIdToCancel);
