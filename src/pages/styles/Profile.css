@@ -1,0 +1,29 @@
+.profile {
+  color: #333;
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.profile thead tr th {
+  font-size: 28px;
+  text-align: left;
+  vertical-align: top;
+  height: 50px;
+}
+
+.profile-missions,
+.profile-rockets {
+  width: 100%;
+  margin: 0 80px;
+  border-collapse: collapse;
+}
+
+.profile-missions tbody tr td,
+.profile-rockets tbody tr td {
+  border: 1px solid #999;
+  height: 40px;
+  vertical-align: top;
+  padding: 6px;
+  font-size: 18px;
+}

@@ -1,0 +1,41 @@
+.navItems {
+  display: flex;
+  gap: 30px;
+}
+
+.logo {
+  width: 60px;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #ddd;
+  margin-inline: 4%;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.navItems li {
+  list-style: none;
+}
+
+.navItems li a {
+  text-decoration: none;
+  color: #03a9f4;
+}
+
+.icon {
+  border-right: 1px solid black;
+  padding-right: 25px;
+}
+
+.nav-link.active {
+  text-decoration: underline;
+  text-decoration-color: #03a9f4;
+}
