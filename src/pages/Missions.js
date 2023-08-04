@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMissions, joinMission, leaveMission } from '../redux/missions/missionsSlice';
-import './Missions.css';
+import {
+  fetchMissions,
+  joinMission,
+  leaveMission,
+} from '../redux/missions/missionsSlice';
+import './styles/Missions.css';
 
 function Missions() {
   const missionData = useSelector((store) => store.missions);
@@ -30,7 +34,6 @@ function Missions() {
     return (
       <div>
         Error:
-        {' '}
         {error}
       </div>
     );
@@ -49,9 +52,16 @@ function Missions() {
         </thead>
         <tbody>
           {missions.map((mission) => (
-            <tr key={mission.id} className={joinedMissions.includes(mission.id) ? ('rows') : ('join-rows')}>
+            <tr
+              key={mission.id}
+              className={
+                joinedMissions.includes(mission.id) ? 'rows' : 'join-rows'
+              }
+            >
               <td className="td-mission">{mission.name}</td>
-              <td className="description td-description">{mission.description}</td>
+              <td className="description td-description">
+                {mission.description}
+              </td>
               <td className="status">
                 {joinedMissions.includes(mission.id) ? (
                   <span className="mission-status-leave">Active Member</span>
@@ -61,11 +71,19 @@ function Missions() {
               </td>
               <td className="button">
                 {joinedMissions.includes(mission.id) ? (
-                  <button type="button" className="td-leave-mission" onClick={() => handleLeaveMission(mission.id)}>
+                  <button
+                    type="button"
+                    className="td-leave-mission"
+                    onClick={() => handleLeaveMission(mission.id)}
+                  >
                     Leave Mission
                   </button>
                 ) : (
-                  <button type="button" className="td-join-mission" onClick={() => handleJoinMission(mission.id)}>
+                  <button
+                    type="button"
+                    className="td-join-mission"
+                    onClick={() => handleJoinMission(mission.id)}
+                  >
                     Join Mission
                   </button>
                 )}

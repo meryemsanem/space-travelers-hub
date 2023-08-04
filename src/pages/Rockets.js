@@ -5,7 +5,7 @@ import {
   reserveRocket,
   cancelReserveRocket,
 } from '../redux/rockets/rocketsSlice';
-import './Rockets.css';
+import './styles/Rockets.css';
 
 const Rockets = () => {
   const dispatch = useDispatch();

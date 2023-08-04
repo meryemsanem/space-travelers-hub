@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import './Profile.css';
+import './styles/Profile.css';
 
 function Profile() {
   const { missions, joinedMissions } = useSelector((store) => store.missions);
