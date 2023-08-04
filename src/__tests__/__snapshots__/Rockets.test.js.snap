@@ -33,7 +33,7 @@ exports[`matches snapshot for Rockets component 1`] = `
           Description 1
         </p>
         <button
-          class="rocket-btn"
+          class="rocket-btn cancel"
           data-testid="cancel-reservation-button-1"
           type="button"
         >
